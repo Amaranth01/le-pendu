@@ -32,7 +32,6 @@ let myWords = [
     "Sorcière",
     "Démon",
 ];
-let arr;
 let trying = 11;
 let letterUsed = [];
 let findWord = document.getElementById('word');
@@ -41,54 +40,67 @@ let findWord = document.getElementById('word');
 
 let randomWord = myWords[Math.floor(Math.random()*myWords.length)];
 
-//boucle pour voir les lettres utilisées avec let space et mettre des espaces entre
-
 for (let i = 0; i < randomWord.length; i++) {
     letterUsed[i] = " _ ";
     findWord.innerHTML = letterUsed.join(" ");
 }
 
-//nombre d'essai avec boucle for i > X et décrémenter i ou fonction...
+//function for choose the difficult
 
-
-
-// fonction nombre de victoire
-
-function victory() {
-    
+function choiceDifficult () {
+    let easy = document.getElementById('easy');
+    let middle = document.getElementById('middle');
+    let hard = document.getElementById('hard');
+    //difficult easy
+    easy.addEventListener("click", function (){
+        trying = 11;
+        game();
+    })
+    //difficult middle
+    middle.addEventListener("click", function (){
+        trying = 8;
+        game();
+    })
+    //difficult hard
+    hard.addEventListener("click", function (){
+        trying = 6;
+        document.getElementById('word').innerHTML = trying;
+        game();
+    })
 }
 
+// Look if player win or loose
+
 function characterInWord (character){
-    let nice = false;
+    let wrong = false;
     let currentWordList = randomWord.split('');
 
     for (let i = 0; i < currentWordList.length; i++) {
         if (character.toLowerCase === currentWordList[i]) {
-            arr[i] = character.toLowerCase();
-            nice = true;
+            myWords[i] = character.toLowerCase();
+            wrong = true;
 
-            //look is player win
-            if (arr.join('') === randomWord) {
+            //victory
+            if (myWords.join('') === randomWord) {
                 alert("Tu as trouvé le bon mot !");
-                victory = victory + 1;
-                victory();
             }
 
         }
     }
-
-    if (nice === false) {
+    //defeat
+    if (wrong === false) {
         trying = trying -1;
-        choiceDifficult();
 
         if (trying===0) {
-            document.getElementById('//afficher le mot correct créer une div').innerHTML = 'Perdu le mot était...' + randomWord;
+            document.getElementById('try').innerHTML = 'Perdu le mot était...' + randomWord;
         }
     }
 }
 
-//letter used
+//Letter used with keyboard
+
 function addLetter(userKeypress) {
+
     let repeatLetter = letterUsed.some(function (item){
         return item === userKeypress;
     })
@@ -97,10 +109,16 @@ function addLetter(userKeypress) {
     }
     else {
         letterUsed.push(userKeypress);
-        letterAlreadyUsed();
-        charactereInWord(userKeypress);
     }
 }
+
+document.onkeydown = function (event){
+    let keyPress = String.fromCharCode(event.keyCode);
+    document.getElementById('used-letters').innerHTML += keyPress;
+    addLetter(keyPress);
+}
+
+//Show hyphens if the word is empty
 
 function blankScreen() {
     myWords.length = randomWord.length;
@@ -110,15 +128,14 @@ function blankScreen() {
 // reset
 
 function reset () {
-    letterUsed = [];
-    arr = [];
-    trying = '' + choiceDifficult.length;
-}
-
-document.onkeydown = function (event){
-    let keyPress = string.fromCharCode(event.keyCode);
-    document.getElementById('used-letters').innerHTML = keyPress;
-    addLetter(keyPress);
+    if (trying <= 0) {
+        alert('Vous avez perdu !');
+        window.location.reload();
+    }
+    else {
+        alert('Vous avez gagné !');
+        window.location.reload();
+    }
 }
 
 function game () {
@@ -127,27 +144,4 @@ function game () {
     blankScreen();
     reset();
     characterInWord();
-}
-
-//function for choose the difficult
-
-function choiceDifficult () {
-    let easy = document.getElementById('facile');
-    let middle = document.getElementById('moyen');
-    let hard = document.getElementById('hard');
-
-    easy.addEventListener("click", function (){
-        trying = 11;
-        game();
-    })
-
-    middle.addEventListener("click", function (){
-        trying = 8;
-        game();
-    })
-
-    hard.addEventListener("click", function (){
-        trying = 6;
-        game();
-    })
 }
