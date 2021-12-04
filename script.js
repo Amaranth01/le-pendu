@@ -1,4 +1,3 @@
-let word = document.getElementById('completeWord');
 let myWords = [
     "Valhalla",
     "Sovengard",
@@ -35,28 +34,57 @@ let myWords = [
 ];
 let arr;
 let trying = 11;
-let currentWord = "";
 let letterUsed = [];
-let victory = 0;
+let findWord = document.getElementById('word');
 
-//choose a word with random
-for (let i = 0 ; i < myWords.length; i++) {
-    word.innerHTML = myWords[Math.floor(Math.random() * myWords.length)];
+//choose a random word
+
+let randomWord = myWords[Math.floor(Math.random()*myWords.length)];
+
+//boucle pour voir les lettres utilisées avec let space et mettre des espaces entre
+
+for (let i = 0; i < randomWord.length; i++) {
+    letterUsed[i] = " _ ";
+    findWord.innerHTML = letterUsed.join(" ");
 }
-
-// un espace entre chaque lettre avec fonction créer variable = tableau.join et let arr
-function space () {
-    let myVar =
-}
-
-//fonction pour voir les lettres utilisées avec let space et mettre des espaces entre
 
 //nombre d'essai avec boucle for i > X et décrémenter i ou fonction...
+
+
 
 // fonction nombre de victoire
 
 function victory() {
     
+}
+
+function characterInWord (character){
+    let nice = false;
+    let currentWordList = randomWord.split('');
+
+    for (let i = 0; i < currentWordList.length; i++) {
+        if (character.toLowerCase === currentWordList[i]) {
+            arr[i] = character.toLowerCase();
+            nice = true;
+
+            //look is player win
+            if (arr.join('') === randomWord) {
+                alert("Tu as trouvé le bon mot !");
+                victory = victory + 1;
+                victory();
+            }
+
+        }
+    }
+
+    if (nice === false) {
+        trying = trying -1;
+        choiceDifficult();
+
+        if (trying===0) {
+            document.getElementById('//afficher le mot correct créer une div').innerHTML = 'Perdu le mot était...' + randomWord;
+        }
+    }
 }
 
 //letter used
@@ -69,65 +97,57 @@ function addLetter(userKeypress) {
     }
     else {
         letterUsed.push(userKeypress);
-        showLetterUsed();
+        letterAlreadyUsed();
         charactereInWord(userKeypress);
     }
 }
 
-function characterInWord //CHANGER NOM DE FONCTION POUR COMPRENDRE QUELQUE CHOSE(character) {
-    let nice = false;
-    let currentWordList = currentWord.split('');
-
-    for (let i = 0; i < currentWordList.length; i++) {
-        if (character.toLowerCase === currentWordList[i]) {
-            arr[i] = character.toLowerCase();
-            currentWordOnScreen();
-            nice = true;
-            //look is player win
-            if (arr.join('') === currentWord) {
-                alert("Tu as trouvé le bon mot !");
-                victory = victory + 1;
-                showWins();
-            }
-
-        }
-    }
-
-
-if (flag === false) {
-    trial = trial -1;//trial = essai
-    showTrial();
-
-    if (trial===0) {
-        document.getElementById('//afficher le mot correct créer une div').innerHTML = 'Perdu le mot était...'
-    }
-}
-}
-
-function blankArrayOnScreen //CHANGER NOM DE FONCTION POUR COMPRENDRE QUELQUE CHOSE() {
-    myWords.length = currentWord.length;
+function blankScreen() {
+    myWords.length = randomWord.length;
     myWords.fill('_');
 }
 
-//reset
+// reset
 
-// function reset () {
-//     letterUsed = [];
-//     arr = [];
-//     trial = '' + 11;
-// }
-//
-// document.onkeydown = function (event){
-//     let keyPress = string.fromCharCode(event.keyCode);
-//     document.getElementById('used-letters').innerHTML = keyPress;
-//     addLetter(keyPress);
-// }
-
-function game () {
-    addLetter(); //invoquer toutes les fonctions utilisées
+function reset () {
+    letterUsed = [];
+    arr = [];
+    trying = '' + choiceDifficult.length;
 }
 
-document.getElementById(//voir HTMl).addEventListener('click', function () {
-//fonction invocation
+document.onkeydown = function (event){
+    let keyPress = string.fromCharCode(event.keyCode);
+    document.getElementById('used-letters').innerHTML = keyPress;
+    addLetter(keyPress);
+}
 
-// }
+function game () {
+    addLetter();
+    choiceDifficult();
+    blankScreen();
+    reset();
+    characterInWord();
+}
+
+//function for choose the difficult
+
+function choiceDifficult () {
+    let easy = document.getElementById('facile');
+    let middle = document.getElementById('moyen');
+    let hard = document.getElementById('hard');
+
+    easy.addEventListener("click", function (){
+        trying = 11;
+        game();
+    })
+
+    middle.addEventListener("click", function (){
+        trying = 8;
+        game();
+    })
+
+    hard.addEventListener("click", function (){
+        trying = 6;
+        game();
+    })
+}

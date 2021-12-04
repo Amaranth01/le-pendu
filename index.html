@@ -18,12 +18,14 @@
     <div>
         <h2>Règles du jeu</h2>
             <p>Trouvez les bons mots avec que le bonhomme soit pendu. En difficulté facile, vous aurez 11 chances, en moyen
-                7 et en difficile 6 tentatives. Bon courage et soyez malin !</p>
+                8 et en difficile 6 tentatives. Bon courage et soyez malin !</p>
     </div>
 
-    <div id="completeWord"></div>
+    <button id="facile">Facile</button> <button id="moyen">Moyen</button> <button id="difficile">Difficile</button>
 
-    <div id="enter-your-words">
+    <div id="mot-complet"></div>
+
+    <div id="entre-les-lettres">
         <p>Trouvez le mot <span id="word"></span></p>
     </div>
 
@@ -31,7 +33,11 @@
 
     <div id="used-letters"></div>
 
-    <div id="WordsFund"></div>
+    <div>
+        <p>Nombre d'essai restant <span id="try"></span></p>
+    </div>
+
+    <div id="mot-trouvé"></div>
 
 <script src="script.js"></script>
 </body>
