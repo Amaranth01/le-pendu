@@ -32,70 +32,22 @@ let myWords = [
     "Sorcière",
     "Démon",
 ];
-let trying = 11;
 let letterUsed = [];
 let findWord = document.getElementById('word');
+let trying = document.getElementById('try').innerHTML;
+let find = "";
 
 //choose a random word
 
 let randomWord = myWords[Math.floor(Math.random()*myWords.length)];
 
+//loop to determine the length of the word
+
 for (let i = 0; i < randomWord.length; i++) {
     letterUsed[i] = " _ ";
     findWord.innerHTML = letterUsed.join(" ");
 }
-
-//function for choose the difficult
-
-function choiceDifficult () {
-    let easy = document.getElementById('easy');
-    let middle = document.getElementById('middle');
-    let hard = document.getElementById('hard');
-    //difficult easy
-    easy.addEventListener("click", function (){
-        trying = 11;
-        game();
-    })
-    //difficult middle
-    middle.addEventListener("click", function (){
-        trying = 8;
-        game();
-    })
-    //difficult hard
-    hard.addEventListener("click", function (){
-        trying = 6;
-        document.getElementById('word').innerHTML = trying;
-        game();
-    })
-}
-
-// Look if player win or loose
-
-function characterInWord (character){
-    let wrong = false;
-    let currentWordList = randomWord.split('');
-
-    for (let i = 0; i < currentWordList.length; i++) {
-        if (character.toLowerCase === currentWordList[i]) {
-            myWords[i] = character.toLowerCase();
-            wrong = true;
-
-            //victory
-            if (myWords.join('') === randomWord) {
-                alert("Tu as trouvé le bon mot !");
-            }
-
-        }
-    }
-    //defeat
-    if (wrong === false) {
-        trying = trying -1;
-
-        if (trying===0) {
-            document.getElementById('try').innerHTML = 'Perdu le mot était...' + randomWord;
-        }
-    }
-}
+console.log(randomWord);
 
 //Letter used with keyboard
 
@@ -118,30 +70,47 @@ document.onkeydown = function (event){
     addLetter(keyPress);
 }
 
-//Show hyphens if the word is empty
+// check if the lettre is present into the world
 
-function blankScreen() {
-    myWords.length = randomWord.length;
-    myWords.fill('_');
+function addLetterInWord () {
+    //utiliser index of et deux tableaux... spliter quelque chose ?
+
 }
 
-// reset
+//function for choose the difficult
 
-function reset () {
-    if (trying <= 0) {
-        alert('Vous avez perdu !');
-        window.location.reload();
-    }
-    else {
-        alert('Vous avez gagné !');
-        window.location.reload();
-    }
+function choiceDifficult () {
+    let trouve = true;
+    let easy = document.getElementById('easy');
+    let middle = document.getElementById('middle');
+    let hard = document.getElementById('hard');
+    //difficult easy
+    easy.addEventListener("click", function (){
+        trying = 11;
+        document.getElementById('try').innerHTML = "11";
+        if (trouve === true){
+            if (randomWord === find) {
+                alert("vous avez gagné");
+            }
+            else if (trying <= 0){
+                alert("Vous avez perdu");
+            }
+        }
+    })
+    //difficult middle
+    middle.addEventListener("click", function (){
+        trying = 8;
+        if (trouve === true)
+        document.getElementById('try').innerHTML = '8';
+    })
+    //difficult hard
+    hard.addEventListener("click",function (){
+        trying = 6;
+        if (trouve === true)
+        document.getElementById('try').innerHTML = '6';
+    })
 }
 
-function game () {
-    addLetter();
-    choiceDifficult();
-    blankScreen();
-    reset();
-    characterInWord();
-}
+addLetter();
+choiceDifficult();
+addLetterInWord ();
