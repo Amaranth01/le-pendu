@@ -33,49 +33,67 @@ let myWords = [
     "Démon",
 ];
 let letterUsed = [];
+let letterFalse = [];
 let findWord = document.getElementById('word');
 let trying = document.getElementById('try').innerHTML;
 let find = "";
+let submit = document.getElementById('submit');
 
 //choose a random word
 
 let randomWord = myWords[Math.floor(Math.random()*myWords.length)];
-
-//loop to determine the length of the word
+let newRandomWord = [];
+let spanArray = [];
 
 for (let i = 0; i < randomWord.length; i++) {
-    letterUsed[i] = " _ ";
-    findWord.innerHTML = letterUsed.join(" ");
+    let span = document.createElement('span');
+    span.innerHTML = " _ ";
+    findWord.appendChild(span);
+    spanArray.push(span);
+
+    newRandomWord.push(randomWord[i].toLowerCase());
 }
-console.log(randomWord);
-
-//Letter used with keyboard
-
-// function addLetter(userKeypress) {
-//
-//     let repeatLetter = letterUsed.some(function (item){
-//         return item === userKeypress;
-//     })
-//     if (repeatLetter) {
-//         alert('La lettre' + " " + userKeypress + " " + "est déjà utilisée");
-//     }
-//     else {
-//         letterUsed.push(userKeypress);
-//     }
-// }
-//
-// document.onkeydown = function (event){
-//     let keyPress = String.fromCharCode(event.keyCode);
-//     document.getElementById('used-letters').innerHTML += keyPress;
-//     addLetter(keyPress);
-// }
+console.log(newRandomWord);
+console.log(spanArray);
 
 // check if the lettre is present into the world
 
-function addLetterInWord () {
-    let input = document.getElementById('addLetter').value;
-    randomWord = letterUsed.indexOf(input);
-    letterUsed = findWord.innerHTML;
+submit.addEventListener('click', function addLetterInWord () {
+
+    let addLetter = document.getElementById('addLetter');
+    let value = addLetter.value.toLowerCase();
+
+    if (newRandomWord.includes(value)) {
+
+        while (newRandomWord.indexOf(value) !== -1) {
+            let index = newRandomWord.indexOf(value);
+            newRandomWord[index] = "_";
+            spanArray[index].innerHTML = value;
+        }
+    }
+    addLetter.value = "";
+
+})
+
+//Letter used with keyboard
+
+function addLetter(userKeypress) {
+
+    let repeatLetter = letterUsed.some(function (item){
+        return item === userKeypress;
+    })
+    if (repeatLetter) {
+        alert('La lettre' + " " + userKeypress + " " + "est déjà utilisée");
+    }
+    else {
+        letterUsed.push(userKeypress);
+    }
+}
+
+document.onkeydown = function (event){
+    let keyPress = String.fromCharCode(event.keyCode);
+    document.getElementById('used-letters').innerHTML += keyPress;
+    addLetter(keyPress);
 }
 
 //function for choose the difficult
@@ -114,4 +132,3 @@ function choiceDifficult () {
 
 addLetter();
 choiceDifficult();
-addLetterInWord ();
