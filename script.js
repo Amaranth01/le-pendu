@@ -51,30 +51,31 @@ console.log(randomWord);
 
 //Letter used with keyboard
 
-function addLetter(userKeypress) {
-
-    let repeatLetter = letterUsed.some(function (item){
-        return item === userKeypress;
-    })
-    if (repeatLetter) {
-        alert('La lettre' + " " + userKeypress + " " + "est déjà utilisée");
-    }
-    else {
-        letterUsed.push(userKeypress);
-    }
-}
-
-document.onkeydown = function (event){
-    let keyPress = String.fromCharCode(event.keyCode);
-    document.getElementById('used-letters').innerHTML += keyPress;
-    addLetter(keyPress);
-}
+// function addLetter(userKeypress) {
+//
+//     let repeatLetter = letterUsed.some(function (item){
+//         return item === userKeypress;
+//     })
+//     if (repeatLetter) {
+//         alert('La lettre' + " " + userKeypress + " " + "est déjà utilisée");
+//     }
+//     else {
+//         letterUsed.push(userKeypress);
+//     }
+// }
+//
+// document.onkeydown = function (event){
+//     let keyPress = String.fromCharCode(event.keyCode);
+//     document.getElementById('used-letters').innerHTML += keyPress;
+//     addLetter(keyPress);
+// }
 
 // check if the lettre is present into the world
 
 function addLetterInWord () {
-    //utiliser index of et deux tableaux... spliter quelque chose ?
-
+    let input = document.getElementById('addLetter').value;
+    randomWord = letterUsed.indexOf(input);
+    letterUsed = findWord.innerHTML;
 }
 
 //function for choose the difficult
