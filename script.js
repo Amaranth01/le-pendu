@@ -96,6 +96,12 @@ document.onkeydown = function (event){
     addLetter(keyPress);
 }
 
+//image of hangman
+function image(error){
+    document.getElementById("image").querySelector("img").src = "img/pendu_" + error + ".png";
+    document.getElementById("image").querySelector("img").alt = error;
+}
+
 //function for choose the difficult
 
 function choiceDifficult () {
@@ -104,31 +110,31 @@ function choiceDifficult () {
     let middle = document.getElementById('middle');
     let hard = document.getElementById('hard');
     //difficult easy
-    easy.addEventListener("click", function (){
-        trying = 11;
-        document.getElementById('try').innerHTML = "11";
-        if (trouve === true){
-            if (randomWord === find) {
-                alert("vous avez gagné");
-            }
-            else if (trying <= 0){
-                alert("Vous avez perdu");
-            }
+    easy.addEventListener("click", function () {
+        trying = 10;
+        if () {
+
         }
+        document.getElementById('try').innerHTML = '11';
     })
     //difficult middle
     middle.addEventListener("click", function (){
         trying = 8;
-        if (trouve === true)
+        if (){
+
+        }
         document.getElementById('try').innerHTML = '8';
     })
     //difficult hard
     hard.addEventListener("click",function (){
         trying = 6;
-        if (trouve === true)
+        if (){
+
+        }
         document.getElementById('try').innerHTML = '6';
     })
 }
+
 
 addLetter();
 choiceDifficult();
