@@ -36,7 +36,7 @@ let letterUsed = [];
 let findWord = document.getElementById('word');
 let submit = document.getElementById('submit');
 let addLetters = document.getElementById('addLetter');
-let trying = 10;
+let trying = 11;
 
 //choose a random word
 
@@ -95,14 +95,15 @@ document.onkeydown = function (event){
 }
 
 function essai () {
-    if (spanArray === newRandomWord) {
-        alert("Vous avez sauvé le pendu !")
+    if (spanArray !== newRandomWord) {
+        trying--;
+        document.getElementById('try').innerHTML = trying;
     }
-    if (addLetters !== spanArray) {
-        trying--
-        if (trying === 0) {
-            alert("Vous avez perdu, le mot était : " + addLetterInWord())
-        }
+    if (trying <= 0) {
+        alert("Perdu ! Le mot était : " + randomWord);
+    }
+    if (spanArray === newRandomWord) {
+        alert("Gagné !");
     }
 }
 

@@ -7,3 +7,33 @@
 html {
     font-size: 65.5%;
 }
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    color: indigo;
+}
+
+#rules {
+    text-align: center;
+    margin-top: 2rem;
+    border: indigo 2px dashed;
+    width: 80%;
+    margin-left: 10rem;
+    padding: 0.5rem;
+}
+
+#between-letters {
+    margin-top: 2rem;
+}
+
+#word {
+    font-size: 1.5rem;
+}
+
