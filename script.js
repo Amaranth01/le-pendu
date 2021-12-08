@@ -33,11 +33,10 @@ let myWords = [
     "Démon",
 ];
 let letterUsed = [];
-let letterFalse = [];
 let findWord = document.getElementById('word');
-let trying = document.getElementById('try').innerHTML;
-let find = "";
 let submit = document.getElementById('submit');
+let addLetters = document.getElementById('addLetter');
+let trying = 10;
 
 //choose a random word
 
@@ -60,8 +59,7 @@ console.log(spanArray);
 
 submit.addEventListener('click', function addLetterInWord () {
 
-    let addLetter = document.getElementById('addLetter');
-    let value = addLetter.value.toLowerCase();
+    let value = addLetters.value.toLowerCase();
 
     if (newRandomWord.includes(value)) {
 
@@ -71,7 +69,7 @@ submit.addEventListener('click', function addLetterInWord () {
             spanArray[index].innerHTML = value;
         }
     }
-    addLetter.value = "";
+    addLetters.value = "";
 
 })
 
@@ -96,45 +94,17 @@ document.onkeydown = function (event){
     addLetter(keyPress);
 }
 
-//image of hangman
-function image(error){
-    document.getElementById("image").querySelector("img").src = "img/pendu_" + error + ".png";
-    document.getElementById("image").querySelector("img").alt = error;
+function essai () {
+    if (spanArray === newRandomWord) {
+        alert("Vous avez sauvé le pendu !")
+    }
+    if (addLetters !== spanArray) {
+        trying--
+        if (trying === 0) {
+            alert("Vous avez perdu, le mot était : " + addLetterInWord())
+        }
+    }
 }
-
-//function for choose the difficult
-
-function choiceDifficult () {
-    let trouve = true;
-    let easy = document.getElementById('easy');
-    let middle = document.getElementById('middle');
-    let hard = document.getElementById('hard');
-    //difficult easy
-    easy.addEventListener("click", function () {
-        trying = 10;
-        if () {
-
-        }
-        document.getElementById('try').innerHTML = '11';
-    })
-    //difficult middle
-    middle.addEventListener("click", function (){
-        trying = 8;
-        if (){
-
-        }
-        document.getElementById('try').innerHTML = '8';
-    })
-    //difficult hard
-    hard.addEventListener("click",function (){
-        trying = 6;
-        if (){
-
-        }
-        document.getElementById('try').innerHTML = '6';
-    })
-}
-
 
 addLetter();
-choiceDifficult();
+essai();
