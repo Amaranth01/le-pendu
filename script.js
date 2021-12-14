@@ -77,7 +77,7 @@ submit.addEventListener('click', function addLetterInWord () {
         alert ("Vous n'avez pas sauvé le pendu. Le mot était " + randomWord);
         window.location.reload();
     }
-    if (newRandomWord === spanArray) {
+    if (spanArray.length === randomWord) {
         alert('Vous avez gagné !');
         window.location.reload();
     }
