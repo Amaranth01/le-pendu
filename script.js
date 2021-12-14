@@ -36,7 +36,7 @@ let letterUsed = [];
 let findWord = document.getElementById('word');
 let submit = document.getElementById('submit');
 let addLetters = document.getElementById('addLetter');
-let trying = 11;
+let trying = 10;
 
 //choose a random word
 
@@ -53,12 +53,10 @@ for (let i = 0; i < randomWord.length; i++) {
     newRandomWord.push(randomWord[i].toLowerCase());
 }
 console.log(newRandomWord);
-console.log(spanArray);
 
 // check if the lettre is present into the world
 
 submit.addEventListener('click', function addLetterInWord () {
-
     let value = addLetters.value.toLowerCase();
 
     if (newRandomWord.includes(value)) {
@@ -70,7 +68,19 @@ submit.addEventListener('click', function addLetterInWord () {
         }
     }
     addLetters.value = "";
-
+//victory, defeat, reload
+    if (spanArray !== newRandomWord) {
+        trying--;
+        document.getElementById('try').innerHTML = trying.toString();
+    }
+    if (trying <= 0) {
+        alert ("Vous n'avez pas sauvé le pendu. Le mot était " + randomWord);
+        window.location.reload();
+    }
+    if (newRandomWord === spanArray) {
+        alert('Vous avez gagné !');
+        window.location.reload();
+    }
 })
 
 //Letter used with keyboard
@@ -94,18 +104,4 @@ document.onkeydown = function (event){
     addLetter(keyPress);
 }
 
-function essai () {
-    if (spanArray !== newRandomWord) {
-        trying--;
-        document.getElementById('try').innerHTML = trying;
-    }
-    if (trying <= 0) {
-        alert("Perdu ! Le mot était : " + randomWord);
-    }
-    if (spanArray === newRandomWord) {
-        alert("Gagné !");
-    }
-}
-
 addLetter();
-essai();
