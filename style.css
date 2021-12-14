@@ -8,6 +8,10 @@ html {
     font-size: 65.5%;
 }
 
+body {
+    background : linear-gradient(#ffffff, #179edc);
+}
+
 #content {
     display: flex;
     flex-wrap: wrap;
@@ -37,3 +41,40 @@ h1 {
     font-size: 1.5rem;
 }
 
+#trying, #used-letters {
+    font-size: 1.5rem;
+}
+
+#used {
+    display: flex;
+    width: 50%;
+    font-size: 1.5rem;vertical-align: top;
+    margin-top: 2rem;
+}
+
+#addLetter {
+    margin-top: 1rem;
+    width: 10%;
+    margin-left: 0.5rem;
+}
+
+#submit {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
+#between-letters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#try {
+    color: red;
+    font-weight: bold;
+}
+
+#trying {
+    margin-top: 1rem;
+}
