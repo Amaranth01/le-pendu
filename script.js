@@ -1,45 +1,44 @@
 let myWords = [
-    "Valhalla",
-    "Sovengard",
-    "Odin",
-    "Freya",
-    "Yggdrasil",
-    "Dragon",
-    "Fourchette",
-    "Couteau",
-    "Cuillère",
-    "Elfe",
-    "Seigneur",
-    "Anneaux",
-    "Nains",
-    "Voiture",
-    "Cheval",
-    "Chien" ,
-    "Chat",
-    "Fruits",
-    "Viande",
-    "Légumes",
-    "Dessert",
-    "Chocolat",
-    "Sel",
-    "Poivre",
-    "Epée",
-    "Bouclier",
-    "Armure",
-    "Cuirasse",
-    "Chevalier",
-    "Sorcier",
-    "Sorcière",
-    "Démon",
+    "valhalla",
+    "sovengard",
+    "odin",
+    "freya",
+    "yggdrasil",
+    "dragon",
+    "fourchette",
+    "couteau",
+    "cuillère",
+    "elfe",
+    "seigneur",
+    "anneaux",
+    "nains",
+    "voiture",
+    "cheval",
+    "chien" ,
+    "chat",
+    "fruits",
+    "viande",
+    "légumes",
+    "dessert",
+    "chocolat",
+    "sel",
+    "poivre",
+    "épée",
+    "bouclier",
+    "armure",
+    "cuirasse",
+    "chevalier",
+    "sorcier",
+    "sorcière",
+    "démon",
 ];
 let letterUsed = [];
 let findWord = document.getElementById('word');
 let submit = document.getElementById('submit');
 let addLetters = document.getElementById('addLetter');
-let trying = 10;
+let trying = 12;
 
 //choose a random word
-
 let randomWord = myWords[Math.floor(Math.random()*myWords.length)];
 let newRandomWord = [];
 let spanArray = [];
@@ -49,12 +48,11 @@ for (let i = 0; i < randomWord.length; i++) {
     span.innerHTML = " _ ";
     findWord.appendChild(span);
     spanArray.push(span);
-
+    //push the word in the second array
     newRandomWord.push(randomWord[i].toLowerCase());
 }
-console.log(newRandomWord);
 
-// check if the lettre is present into the world
+// check if the lettre is present into the word
 
 submit.addEventListener('click', function addLetterInWord () {
     let value = addLetters.value.toLowerCase();
@@ -68,7 +66,11 @@ submit.addEventListener('click', function addLetterInWord () {
         }
     }
     addLetters.value = "";
-//victory, defeat, reload
+    victoryCondition();
+})
+
+//check condition of victory, defeat, reload
+function victoryCondition () {
     if (spanArray !== newRandomWord) {
         trying--;
         document.getElementById('try').innerHTML = trying.toString();
@@ -77,11 +79,11 @@ submit.addEventListener('click', function addLetterInWord () {
         alert ("Vous n'avez pas sauvé le pendu. Le mot était " + randomWord);
         window.location.reload();
     }
-    if (spanArray.length === randomWord) {
+    if (randomWord === newRandomWord.length) {
         alert('Vous avez gagné !');
         window.location.reload();
     }
-})
+}
 
 //Letter used with keyboard
 

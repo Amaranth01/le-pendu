@@ -9,7 +9,11 @@ html {
 }
 
 body {
-    background : linear-gradient(#ffffff, #179edc);
+
+    font-size: 2rem;
+    background-size:  cover;
+    background-image: url("village-conques.jpg");
+    background-repeat: no-repeat;
 }
 
 #content {
@@ -27,28 +31,36 @@ h1 {
 #rules {
     text-align: center;
     margin-top: 2rem;
-    border: indigo 2px dashed;
     width: 80%;
     margin-left: 10rem;
-    padding: 0.5rem;
+    padding: 1rem;
+    color: white;
+    background-color: rgba(75, 0, 130, 0.61);
 }
 
 #between-letters {
     margin-top: 2rem;
+    color: white;
 }
 
 #word {
     font-size: 1.5rem;
 }
 
-#trying, #used-letters {
+#trying, #used-letters, #used {
     font-size: 1.5rem;
+    color: white;
+    margin-left: 2rem;
+}
+
+#letterWrite {
+    color: white;
+    background-color: rgba(75, 0, 130, 0.61);
 }
 
 #used {
     display: flex;
     width: 50%;
-    font-size: 1.5rem;vertical-align: top;
     margin-top: 2rem;
 }
 
@@ -76,5 +88,6 @@ h1 {
 }
 
 #trying {
-    margin-top: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
